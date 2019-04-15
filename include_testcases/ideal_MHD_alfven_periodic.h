@@ -89,8 +89,6 @@ inline REAL rho_boundary(uint ix, uint iy, uint iz, REAL time) {
   return (REAL)(1);
 }
 
-
-
 /* initial conditions for the simulation */
 
 inline REAL4 b_initial(uint ix, uint iy, uint iz, REAL time){
@@ -104,11 +102,13 @@ inline REAL4 u_initial(uint ix, uint iy, uint iz, REAL time){
 }
 
 inline REAL p_initial(uint idx, uint iy, uint iz, REAL time){
-  
+
   return (REAL)(1);
 }
 
 inline REAL rho_initial(uint idx, uint iy, uint iz, REAL time){
 
   return (REAL)(1);
-}	
+
+}
+

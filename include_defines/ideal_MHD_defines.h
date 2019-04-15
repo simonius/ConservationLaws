@@ -64,6 +64,14 @@ TODO: JANHUNEN_CENTRAL, BRACKBILL_BARNES_CENTRAL, cf.
 #define USE_HLL_SPEED_BKW
 
 
+// Boundary Fluxes: USE_BOUNDARY_FLUX_HLL
+#define USE_BOUNDARY_FLUX_HLL
+
+// Speeds: USE_HLL_SPEED_KUSANO USE_HLL_SPEED_BKW
+#define USE_HLL_SPEED_BKW
+
+
+
 enum Fields {
              // Density
              Field_rho,
