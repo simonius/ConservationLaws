@@ -6,7 +6,7 @@
 
 
 // Example for homogeneous magnetic fields
-REAL4 constant B0 = {0.0, 0.0, 1.0, 0.0};
+REAL4 constant B0 = {0.0, 0.0, 0.5, 0.0};
 REAL constant A0 = 0.1;
 REAL constant omega = 6.28 * 10;
 /*
