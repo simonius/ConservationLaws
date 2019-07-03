@@ -12,7 +12,7 @@ REAL4 constant M = {0.0, 0.0, 100.0, 0.0};
 REAL4 constant X_0 = {-5.0, 0.5, 0.5, 0.0};
 REAL constant A0 = 0.1;
 REAL constant omega = 6.28 * 2;
-REAL constant delta = 10;
+REAL constant delta = 100;
 REAL4 constant X_ex = {1.0, 0.5, 0.5, 0.0};
 /*
 There is no analytical solution for this simulation
