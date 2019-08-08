@@ -8,9 +8,10 @@
 // Example for inhomogeneous magnetic fields
 // A dipole outside of the domain
 // paramters
-REAL4 constant M = {0.0, 0.0, 1.0, 0.0};
+REAL4 constant M = {0.0, 0.0, 0.000001, 0.0}; //maximum is 0.0001
 REAL4 constant X_0 = {0.5, 0.5, 0.5, 0.0};
-REAL constant width = 0.1;
+REAL constant width = 0.05;
+REAL constant reg = 0.0001;
 /*
 There is no analytical solution for this simulation
 */
@@ -30,7 +31,7 @@ inline REAL4 b_analytical(uint ix, uint iy, uint iz, REAL time) {
 // (1951)
 
 inline REAL4 b_dipole(REAL4 X, REAL4 M) {
-  REAL inorm = rsqrt(X.x*X.x + X.y*X.y + X.z*X.z);
+  REAL inorm = rsqrt(X.x*X.x + X.y*X.y + X.z*X.z + reg);
   REAL4 n = inorm * X;
   REAL4 H = (3 * n * dot(M, n) - M) * inorm * inorm * inorm;
   return H;
@@ -52,7 +53,7 @@ inline REAL rho_initial(uint ix, uint iy, uint iz, REAL time){
 
 inline REAL4 b_initial(uint ix, uint iy, uint iz, REAL time){
 
-  return b_dipole(REAL4){0, 0, 0, 0};
+  return (REAL4){0, 0, 0, 0};
 }
 
 inline REAL4 u_initial(uint ix, uint iy, uint iz, REAL time){
@@ -93,10 +94,10 @@ inline REAL p_boundary(uint ix, uint iy, uint iz, REAL time){
 
 }
 
-inline REAL B_source(uint ix, uint iy, uint iz, REAL time){
+inline REAL4 B_source(uint ix, uint iy, uint iz, REAL time){
   REAL x = XMIN + ix * DX - X_0.x;
   REAL y = YMIN + iy * DY - X_0.y;
   REAL z = ZMIN + iz * DZ - X_0.z;
-  REAL4 bdip = b_dipole({x, y, z, 0}, M);
-  return bdip * exp(-(x*x + y*y + z*z)/width);
+  REAL4 bdip = b_dipole((REAL4){x, y, z, 0}, M);
+  return bdip * exp(-(x*x + y*y + z*z)/width*width);
 }
